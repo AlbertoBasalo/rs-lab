@@ -1,0 +1,29 @@
+{
+    "editor.formatOnSave": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.detectIndentation": false,
+    "editor.fontFamily": "'Monaspace Argon','Fira Code', 'Cascadia Mono PL', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": false,
+    "editor.fontSize": 18,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.minimap.enabled": false,
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#3fb950",
+        "editorBracketHighlight.foreground1": "#a371f7",
+        "editorBracketHighlight.foreground2": "#58a6ff",
+        "editorBracketHighlight.foreground3": "#3fb950",
+        "editorBracketHighlight.foreground4": "#d29922",
+        "editorBracketHighlight.foreground5": "#db6d28",
+        "editorBracketHighlight.foreground6": "#f85149",
+        "editorError.foreground": "#f85149",
+        "editorWarning.foreground": "#555",
+        "tab.activeBorder": "#3fb950",
+        "tab.activeBorderTop": "#3fb950",
+        "terminalCursor.foreground": "#3fb950"
+    },
+    "workbench.colorTheme": "Default Dark Modern"
+}

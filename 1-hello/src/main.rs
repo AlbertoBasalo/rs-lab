@@ -1,5 +1,7 @@
 fn main() {
-    let mut nombre;
-    nombre = "Rust";
-    println!("Hola, {}!", nombre);
+    let mut name;
+    name = "Rust";
+    println!("Hello, {}!", name);
+    name = "Alberto Basalo";
+    print!("By {}.", name)
 }

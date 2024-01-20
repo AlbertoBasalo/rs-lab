@@ -3,6 +3,8 @@
 > [!NOTE]
 > Rust Laboratory for courses and workshops by [Alberto Basalo](https://albertobasalo.dev)
 
+![Rust Image](rust.jpg)
+
 ---
 
 <footer>
