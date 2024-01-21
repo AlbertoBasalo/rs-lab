@@ -1,7 +1,7 @@
 # Rust laboratory
 
 > [!NOTE]
-> Rust Laboratory for courses and workshops by [Alberto Basalo](https://albertobasalo.dev)
+> [Rust sample repository](https://github.com/AlbertoBasalo/rs-lab) for courses and workshops by [Alberto Basalo](https://albertobasalo.dev)
 
 ![Rust Image](rust.jpg)
 
