@@ -1,6 +1,5 @@
 fn main() {
-    let mut name: &str;
-    name = "Rust";
+    let mut name: &str = "Rust";
     println!("Hello, {}!", name);
     name = "Alberto Basalo";
     println!("By {}.", name);
