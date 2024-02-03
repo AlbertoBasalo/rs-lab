@@ -2,7 +2,7 @@ fn main() {
     // ATM machine
 
     // amount_to_withdraw
-    let amount_to_withdraw: u16 = 250;
+    let amount_to_withdraw: u16 = 7520;
 
     // Early return if amount_to_withdraw is zero
     if amount_to_withdraw == 0 {
