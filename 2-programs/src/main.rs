@@ -1,6 +1,7 @@
 use std::env;
 // ATM machine
 fn main() {
+    // Get the command line arguments
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
         println!("🚧 Please provide the amount to withdraw.");
@@ -37,12 +38,11 @@ fn main() {
     // Early return if amount_to_withdraw is not multiple of the minimum note value
     let min_note_value: u8 = available_note_values[COUNT_AVAILABLE_NOTE_VALUES - 1];
     if amount_to_withdraw % (min_note_value as u16) != 0 {
-        println!("🚫 Amount to withdraw is not multiple of the minimum note value.");
+        println!("🚧 Amount to withdraw is not multiple of the minimum note value.");
         return;
     }
 
     // Struct to store the notes of a given value and quantity
-    #[derive(Debug)]
     struct WadOfNotes {
         value: u8,
         quantity: u8,
