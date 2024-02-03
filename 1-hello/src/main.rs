@@ -10,10 +10,10 @@ fn main() {
     // maximum signed integer i128
     let max_i128: i128 = 170141183460469231731687303715884105727;
     println!("The maximum + signed integer is  {}.", max_i128);
-    // minimum signed integer i128
+    // minimum negative signed integer i128
     let min_i128: i128 = -170141183460469231731687303715884105728;
     println!("The minimum - signed integer is {}.", min_i128);
-    // a float min / max
+    // a float division min / max
     let min_f64: f64 = min_i128 as f64 / max_u128 as f64;
     println!("The ratio min/max is {}.", min_f64);
     // square root of 2
@@ -25,7 +25,7 @@ fn main() {
     // division by zero, don't panic
     let div0: f64 = 1.0_f64 / 0.0_f64;
     println!("The division by zero is {}.", div0);
-    // is even or odd, a boolean question
+    // is even or odd? a boolean question
     let is_even: bool = max_u128 % 2 == 0;
     println!("Is the maximum unsigned integer even? : {}.", is_even);
     // working with strings
