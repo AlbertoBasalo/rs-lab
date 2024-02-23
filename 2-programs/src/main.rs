@@ -73,7 +73,7 @@ fn main() {
         // Push the wad to the wallet
         wallet.push(wad);
         // Update pending_amount
-        let wad_value: u16 = (quantity * note_value) as u16;
+        let wad_value: u16 = (quantity as u16) * (note_value as u16);
         pending_amount -= wad_value;
     }
     if pending_amount != 0 {
@@ -83,9 +83,10 @@ fn main() {
 
     // traverse wallet and print each wad with note details
     let mut index: usize = 0;
+    println!("💼 Save {} in to your wallet", amount_to_withdraw);
     while index < wallet.len() {
         let wad: &WadOfNotes = &wallet[index];
-        println!("💸 {} notes of {}.", wad.quantity, wad.value);
+        println!("💸 A wad of {} notes of {}.", wad.quantity, wad.value);
         index += 1;
     }
 }
