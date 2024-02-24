@@ -38,7 +38,9 @@ cargo run 595
 
 - Sample [ATM program using algorithms and data structures](https://github.com/AlbertoBasalo/rs-lab/blob/main/2-programs/src/main.rs)
 
-- Articles to be published soon...
+- Article: [Rust programs](https://albertobasalo.medium.com/rust-programs-262c1409b6c8))
+
+- En Español: [Programas Rust](https://albertobasalo.hashnode.dev/programas-rust))
 
 
 ---
