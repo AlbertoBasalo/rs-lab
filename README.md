@@ -14,20 +14,16 @@ git clone https://github.com/AlbertoBasalo/rs-lab.git
 cd rs-lab
 ```
 
-To run the samples, you need to have [Rust installed](https://www.rust-lang.org/tools/install). Then, you can run the samples with the following command:
-
-```bash
-cd 1-hello
-cargo run
-# or
-cd 2-programs
-cargo run 595
-# ...
-```
+To run the samples, you need to have [Rust installed](https://www.rust-lang.org/tools/install). Then, you can follow the basic steps for each lesson:
 
 ## Lesson 1
 
 - Sample: [Hello world in rust using basic types](https://github.com/AlbertoBasalo/rs-lab/blob/main/1-hello/src/main.rs)
+
+```bash
+cd 1-hello
+cargo run
+```
 
 - Article: [Hello Rust](https://medium.com/@albertobasalo/hello-rust-34f2da7ed380)
 
@@ -37,6 +33,11 @@ cargo run 595
 ## Lesson 2
 
 - Sample [ATM program using algorithms and data structures](https://github.com/AlbertoBasalo/rs-lab/blob/main/2-programs/src/main.rs)
+
+```bash
+cd 2-programs
+cargo run 595
+```
 
 - Article: [Rust programs](https://albertobasalo.medium.com/rust-programs-262c1409b6c8))
 
