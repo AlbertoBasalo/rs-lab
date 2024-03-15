@@ -12,3 +12,11 @@ cargo install cargo-watch
 cargo watch -x run
 ```
 
+
+```bash
+cargo new 3-functions --name functions
+cd 3-functions
+cargo install cargo-watch
+cargo watch -x run
+$ cargo run Cargo.toml secret
+```
