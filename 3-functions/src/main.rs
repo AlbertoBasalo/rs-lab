@@ -39,11 +39,11 @@ fn read_args() -> Result<CliArgs, std::io::Error> {
 ///
 /// If the file is not found, or if the file is not valid UTF-8,
 /// then returns an error message.
-/// ## Arguments
+/// ### Arguments
 /// - `filename` - A string slice that holds the name of the file to read.
-////// ## Returns
+/// ### Returns
 /// - `Result<String, std::io::Error>` - The content of the file.
-////// ## Example
+/// ### Example
 /// ```
 /// let content = read_file("example.txt");
 /// ```
@@ -65,12 +65,12 @@ fn read_file(filename: &str) -> String {
 /// using the key password as a source of shift values.
 /// The shift values are rotated for each character.
 /// > Note: This function is implemented using loops instead of iterators.
-////// ## Arguments
-////// * `input` - A string slice that holds the clean text to be encrypted.
+/// ### Arguments
+/// * `input` - A string slice that holds the clean text to be encrypted.
 /// - `key` - A string slice that holds the key password.
-////// ## Returns
+/// ### Returns
 /// - `String` - The encrypted text.
-////// ## Example
+/// ### Example
 /// ```
 /// let encrypted = caesar_cipher_with_password("hello", "key");
 /// ```
@@ -88,13 +88,14 @@ fn caesar_cipher_text(clean_string: &str, key_string: &str) -> String {
 }
 
 /// Gets the next rotating index from a key string.
+///
 /// This function is used to rotate the key string for each character.
 /// If the current index is at the end of the key string, then it wraps around to the start.
 /// Otherwise, it increments the current index by 1.
-/// ## Arguments
+/// ### Arguments
 /// * `current_index` - A usize that holds the current index.
 /// * `key_string` - A string slice that holds the key password.
-/// ## Returns
+/// ### Returns
 /// * `usize` - The next rotating index.
 fn get_next_key_index(current_index: usize, key_string: &str) -> usize {
     let next_index: usize = current_index + 1;
@@ -107,12 +108,12 @@ fn get_next_key_index(current_index: usize, key_string: &str) -> usize {
 /// This function takes a clean character and a shift value as input.
 /// It applies the Caesar cipher to the character using the shift value.
 /// If the character is not an ASCII alphabetic character, then it is left unchanged.
-////// ## Arguments
+/// ### Arguments
 /// * `clean_char` - A character that holds the clean text to be encrypted.
 /// * `shift` - A u8 that holds the shift value.
-////// ## Returns
+/// ### Returns
 /// * `char` - The encrypted character.
-////// ## Example
+/// ### Example
 /// ```
 /// let encrypted = caesar_cipher_char('a', 3);
 /// ```
@@ -134,7 +135,7 @@ fn caesar_cipher_char(clean_char: char, shift: u8) -> char {
 /// The main function reads the command line arguments, reads the file content, and encrypts the text.
 ///  
 /// It then prints the original and encrypted text to the console.
-/// ## Example
+/// ### Example
 /// ```
 /// cargo run example.txt key
 /// ```
