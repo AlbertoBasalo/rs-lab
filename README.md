@@ -44,6 +44,19 @@ cargo run 595
 - En Español: [Programas Rust](https://albertobasalo.hashnode.dev/programas-rust))
 
 
+## Lesson 3
+
+- Sample: [Caesar cipher program using functions](https://github.com/AlbertoBasalo/rs-lab/blob/main/3-functions/src/main.rs)
+
+```bash 
+cd 3-functions
+cargo run example.txt key
+```
+
+- Article: [Rust functions]()
+
+- En Español: [Funciones Rust]()
+
 ---
 
 <footer>

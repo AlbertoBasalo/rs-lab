@@ -1,0 +1,11 @@
+Rust functions
+
+Functions are blocks of code that perform a specific task. 
+
+In Rust, functions are defined with the keyword 'fn'. 
+
+So much for the easy and obvious. 
+
+But Rust has some unfamiliar features if you're coming from JavaScript, Java, C#, or TypeScript that need a bit of explanation.
+
+Learn Rust with Alberto Basalo.
