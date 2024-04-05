@@ -1,17 +1,21 @@
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+use std::time::{SystemTime, UNIX_EPOCH};
+
 /* Structs */
 
 /// A struct to represent a node in a blockchain.
 ///
 /// ### Attributes
 /// * `index` - A usize that holds the index of the block.
-/// * `timestamp` - A u64 that holds the timestamp of the block.
+/// * `timestamp` - A u128 that holds the timestamp of the block.
 /// * `data` - A `String` that holds the data of the block.
 /// * `previous_hash` - A `String` that holds the hash of the previous block.
 /// * `hash` - A `String` that holds the hash of the current block.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Hash)]
 struct Block {
     index: usize,
-    timestamp: u64,
+    timestamp: u128,
     data: String,
     previous_hash: String,
     hash: String,
@@ -21,11 +25,11 @@ struct Block {
 ///
 /// ### Attributes
 /// * `blocks` - A `Vec<Block>` that holds the blocks of the blockchain.
-/// * `timestamp` - A `u64` that holds the timestamp of the blockchain.
+/// * `timestamp` - A `u128` that holds the timestamp of the blockchain.
 #[derive(Debug)]
 struct Blockchain {
     blocks: Vec<Block>,
-    timestamp: u64,
+    timestamp: u128,
 }
 
 /* Traits */
@@ -35,10 +39,10 @@ struct Blockchain {
 /// This trait provides a `hash` method that calculates the hash of a block.
 /// The hash is calculated using the `index`, `timestamp`, `data`, and `previous_hash` attributes.
 /// ### Methods
-/// * `hash` - A method that calculates the hash of a block.
+/// * `get_hash` - A method that calculates the hash of a block.
 /// * `is_valid` - A method that checks the validity of a block.
 trait Hashable {
-    fn hash(&self) -> String;
+    fn get_hash(&self) -> String;
     fn is_valid(&self) -> bool;
 }
 
@@ -63,8 +67,10 @@ trait Mineable {
 /* Implementations */
 
 impl Hashable for Block {
-    fn hash(&self) -> String {
-        format!("{:?}", self)
+    fn get_hash(&self) -> String {
+        let mut hasher = DefaultHasher::new();
+        self.hash(&mut hasher);
+        format!("{:x}", hasher.finish())
     }
 
     fn is_valid(&self) -> bool {
@@ -74,16 +80,21 @@ impl Hashable for Block {
 
 impl Mineable for Blockchain {
     fn mine(&mut self, data: String) {
-        let index = self.blocks.len() + 1;
-        let timestamp = self.timestamp;
-        let previous_hash = self.last_block().hash();
-        let new_block = Block {
+        let index = self.blocks.len();
+        let timestamp = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_millis();
+        let previous_hash = self.last_block().hash.clone();
+        let mut new_block = Block {
             index,
             timestamp,
             data,
             previous_hash,
             hash: "".to_string(),
         };
+        new_block.hash = new_block.get_hash();
+        self.timestamp = timestamp;
         self.add_block(new_block);
     }
 
@@ -100,9 +111,7 @@ impl Mineable for Blockchain {
             index: 0,
             timestamp: 0,
             data: "Genesis Block".to_string(),
-            previous_hash: "
-            0"
-            .to_string(),
+            previous_hash: "".to_string(),
             hash: "".to_string(),
         }
     }
@@ -136,7 +145,7 @@ fn main() {
     blockchain.mine("Block 3".to_string());
     // Print the blockchain
     for block in &blockchain.blocks {
-        println!("{:?}", block);
+        println!("⛓️ {:?}", block);
     }
     // Check the validity of the blockchain
     println!("Is the blockchain valid? {}", blockchain.is_valid());
