@@ -4,12 +4,7 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 // * Structs
 
-/// A struct to represent a **blockchain node**.
-///
-/// ### Derived trait implementations
-///
-/// - `Debug` - To print the node in a debug format.
-/// - `Clone` - To clone the node.
+/// A struct to represent a **node** in a [`Blockchain`].
 ///
 /// ### Attributes
 /// - `index` - A usize that holds the index of the block.
@@ -26,14 +21,10 @@ struct Block {
     hash: String,
 }
 
-/// A Struct to represent a **Blockchain**.
-///
-/// ### Derived Trait implementations
-///
-/// - `Debug` - To print the node in a debug format.
+/// A Struct to represent a **chain** of [`Block`] nodes.
 ///
 /// ### Attributes
-/// - `blocks` - A `Vec<Block>` that holds the blocks of the blockchain.
+/// - `blocks` - A `Vec<Block>` that holds the [`Block`] of the blockchain.
 /// - `timestamp` - A `u128` that holds the timestamp of the blockchain last change.
 /// - `hash` - A `String` that holds the hash of the current blockchain state.
 #[derive(Debug)]
@@ -48,16 +39,17 @@ struct Blockchain {
 /// Sign and validate structs.
 ///
 /// ### Methods
-/// - `sign` - A method that signs something.
-/// - `is_valid` - A method that checks the validity of something.
+/// - `sign` - A method that signs something returning a `string`.
+/// - `is_valid` - A method that checks the validity of something returning `bool`.
 trait Signature {
     fn sign(&self) -> String;
     fn is_valid(&self) -> bool;
 }
 
-/// Creates a valid new **block** and adds it to the current **blockchain**.
+/// Creates a valid new [`Block`] and adds it to the current [`Blockchain`].
 ///
-/// This trait is for be implemente by a blockchain.
+/// This trait is for be implemented by a [`Blockchain`] struct.
+///
 /// ### Methods
 /// - `mine` - A method that mines a new block for the blockchain.
 trait Mine {
@@ -66,7 +58,7 @@ trait Mine {
 
 //* Trait implementations
 
-/// Implement the `Hash` trait for the `Block` struct.
+/// Implement the [`Hash`] trait for the [`Block`] struct.
 /// The `hash` method hashes the block.
 /// Uses the `index`, `timestamp`, `data`, and `previous_hash` to hash the block.
 impl Hash for Block {
@@ -77,7 +69,7 @@ impl Hash for Block {
         self.previous_hash.hash(state);
     }
 }
-/// Implement the `Hash` trait for the `Blockchain` struct.
+/// Implement the [`Hash`] trait for the [`Blockchain`] struct.
 /// The `hash` method hashes the blockchain.
 /// Uses the `blocks` length and the `timestamp` to hash the blockchain.
 impl Hash for Blockchain {
@@ -130,7 +122,7 @@ impl Blockchain {
     }
 }
 
-/// Implement the `Signature` trait for the `Block` struct.
+/// Implement the [`Signature`] trait for the [`Block`] struct.
 impl Signature for Block {
     /// Signs a block by hashing it.
     fn sign(&self) -> String {
@@ -152,7 +144,7 @@ impl Signature for Block {
     }
 }
 
-/// Implement the `Signature` trait for the `Blockchain` struct.
+/// Implement the [`Signature`] trait for the [`Blockchain`] struct.
 /// The `sign` method signs the blockchain by hashing it.
 /// The `is_valid` method checks if the blockchain is valid.
 /// The blockchain is valid if all blocks are valid and the hashes are correct.
@@ -195,7 +187,7 @@ impl Signature for Blockchain {
     }
 }
 
-/// Implement the `Mine` trait for the `Blockchain` struct.
+/// Implement the [`Mine`] trait for the [`Blockchain`] struct.
 /// The `mine` method creates a new block and adds it to the blockchain.
 /// The new block is signed and the blockchain hash is updated.
 /// The method receives a `data` parameter that is the data to be added to the new block.
