@@ -96,9 +96,9 @@ impl Blockchain {
         self.timestamp = get_timestamp();
         self.hash = self.sign();
         if self.is_valid() {
-            println!("✅ Added block {:#?}", block_clone);
+            println!("📘 Added block {:#?}", block_clone);
         } else {
-            println!("🔥 Removing invalid Block {:#?}", block_clone);
+            println!("📕 Removing invalid Block {:#?}", block_clone);
             self.blocks.pop();
         }
     }
@@ -127,7 +127,7 @@ impl Signature for Block {
         let hash = self.sign();
         if self.hash != hash {
             println!(
-                "🔥 Block {} hash {} is not the expected {}",
+                "💔 Block {} hash {} is not the expected {}",
                 self.index, self.hash, hash
             );
             return false;
@@ -151,27 +151,28 @@ impl Signature for Blockchain {
         let hash = self.sign();
         if self.hash != hash {
             println!(
-                "🔥 Blockchain hash {} is not the expected {}",
+                "💔 Blockchain hash {} is not the expected {}",
                 self.hash, hash
             );
             return false;
         }
         for (index, block) in self.blocks.iter().enumerate() {
             if !block.is_valid() {
-                println!("🔥 Block {} is not valid", index);
+                println!("💔 Block {} is not valid", index);
                 return false;
             }
             if index > 0 {
                 let previous_block = &self.blocks[index - 1];
                 if block.previous_hash != previous_block.hash {
                     println!(
-                        "🔥 Block {} previous hash {} is not the same as previous block {} hash {}",
+                        "💔 Block {} previous hash {} is not the same as previous block {} hash {}",
                         block.index, block.previous_hash, previous_block.index, previous_block.hash
                     );
                     return false;
                 }
             }
         }
+        println!("💚 Blockchain is valid ");
         true
     }
 }
@@ -235,16 +236,16 @@ fn main() {
     blockchain.mine("Block 1".to_string());
     blockchain.mine("Block 2".to_string());
     blockchain.mine("Block 3".to_string());
-    // Prints the blockchain
-    for block in &blockchain.blocks {
-        println!("📒 {:#?}", block);
-    }
     // Check if the blockchain is valid
     if check_blockchain(&blockchain) == false {
         println!(
-            "👋 Unexpected ended with Invalid blockchain {:#?}",
+            "📕 Unexpected ended with Invalid blockchain {:#?}",
             blockchain
         );
+        // Prints the blockchain
+        for block in &blockchain.blocks {
+            println!("📒 {:#?}", block);
+        }
         return;
     }
     // Change the data of a block and check the blockchain validity
@@ -252,7 +253,7 @@ fn main() {
     blockchain.blocks[2].data = "Changed data on block 2".to_string();
     if check_blockchain(&blockchain) {
         println!(
-            "👋 Unexpected ended with Valid blockchain {:#?}",
+            "📕 Unexpected ended with Valid blockchain {:#?}",
             blockchain
         );
         return;
@@ -263,10 +264,13 @@ fn main() {
     blockchain.blocks[2].hash = blockchain.blocks[2].sign();
     if check_blockchain(&blockchain) {
         println!(
-            "👋 Unexpected end with expected Valid blockchain {:#?}",
+            "📕 Unexpected end with expected Valid blockchain {:#?}",
             blockchain
         );
         return;
     }
-    println!("👌 Expected end with Invalid blockchain {:#?}", blockchain);
+    println!(
+        "📘 Expected end with Invalid blockchain of {:#?} blocks",
+        blockchain.blocks.len()
+    );
 }
