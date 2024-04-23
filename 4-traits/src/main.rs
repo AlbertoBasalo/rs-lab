@@ -1,11 +1,12 @@
 use std::collections::hash_map::DefaultHasher;
+use std::fmt;
 use std::hash::{Hash, Hasher};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 // * Structs
 
 /// A struct to represent a **node** in a [`Blockchain`].
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 struct Block {
     /// The index of the block in the [`Blockchain`], being the 0 for the genesis block.
     index: usize,
@@ -68,6 +69,17 @@ impl Hash for Blockchain {
     fn hash<H: Hasher>(&self, state: &mut H) {
         self.blocks.len().hash(state);
         self.timestamp.hash(state);
+    }
+}
+
+/// Implement the [`Debug`] trait for the [`Block`] struct.
+impl fmt::Debug for Block {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "Block {} created at timestamp: {}, signed with hash: {} }}",
+            self.index, self.timestamp, self.hash
+        )
     }
 }
 
@@ -210,14 +222,14 @@ fn get_timestamp() -> u128 {
         .as_millis()
 }
 
-/// Utility function to check if the [`Blockchain`] is valid
+/// Utility function to check if a [`Signature`] is valid
 /// - Prints a message with the result.
-fn check_blockchain(blockchain: &Blockchain) -> bool {
-    if blockchain.is_valid() {
-        println!("💚 The blockchain is valid");
+fn check_signature(signature: &dyn Signature) -> bool {
+    if signature.is_valid() {
+        println!("💚 The signature is valid");
         true
     } else {
-        println!("💔 The blockchain is not valid");
+        println!("💔 The signature is not valid");
         false
     }
 }
@@ -237,7 +249,7 @@ fn main() {
     blockchain.mine("Block 2".to_string());
     blockchain.mine("Block 3".to_string());
     // Check if the blockchain is valid
-    if check_blockchain(&blockchain) == false {
+    if check_signature(&blockchain) == false {
         println!(
             "📕 Unexpected ended with Invalid blockchain {:#?}",
             blockchain
@@ -251,7 +263,7 @@ fn main() {
     // Change the data of a block and check the blockchain validity
     println!("📘 Changing data of block 2");
     blockchain.blocks[2].data = "Changed data on block 2".to_string();
-    if check_blockchain(&blockchain) {
+    if check_signature(&blockchain) {
         println!(
             "📕 Unexpected ended with Valid blockchain {:#?}",
             blockchain
@@ -262,7 +274,7 @@ fn main() {
     println!("📘 Changing data and hash of block 2 to try to make it valid");
     blockchain.blocks[2].data = "Changed data and hash".to_string();
     blockchain.blocks[2].hash = blockchain.blocks[2].sign();
-    if check_blockchain(&blockchain) {
+    if check_signature(&blockchain) {
         println!(
             "📕 Unexpected end with expected Valid blockchain {:#?}",
             blockchain

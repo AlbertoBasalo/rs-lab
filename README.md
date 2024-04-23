@@ -57,6 +57,21 @@ cargo run example.txt key
 
 - En Español: [Funciones Rust]()
 
+
+## Lesson 4
+
+- Sample: [A simple Blockchain using traits](https://github.com/AlbertoBasalo/rs-lab/blob/main/4-traits/src/main.rs)
+
+```bash 
+cd 4-traits
+cargo run 
+```
+
+- Article: [Rust traits]()
+
+- En Español: [Traits en Rust]()
+
+
 ---
 
 <footer>
